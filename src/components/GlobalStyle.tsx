@@ -30,6 +30,13 @@ display: block;
 max-width: 100%;
 }
 
+ul, li {
+  float: left;
+  border: 0px;
+  margin: 0;
+  padding: 0;
+}
+
 /* 7. Remove built-in form typography styles */
 input, button, textarea, select {
 font: inherit;
