@@ -1,3 +1,6 @@
+import moment from 'moment'
+import { ThreeHourForecast } from './api/fetch5DayForecast.types'
+
 export const toQueryString = (obj: Record<string, string | number | boolean | string[] | undefined>): string => {
   const parts: string[] = [];
   for (const key in obj) {
@@ -13,4 +16,23 @@ export const toQueryString = (obj: Record<string, string | number | boolean | st
   }
 
   return parts.join('&');
+}
+
+export const formatFiveDays = (list: ThreeHourForecast[]) => {
+  const fiveDaysForecast: ThreeHourForecast[][] = []
+
+  let dayToFulfill: number = moment().date()
+  let currentDay3HourStepStack: ThreeHourForecast[] = []
+
+  list.map((threeHourStepObject) => {
+    const currentDay: number = moment(threeHourStepObject.dt_txt).date()
+    if (dayToFulfill == currentDay) {
+      currentDay3HourStepStack.push(threeHourStepObject)
+    } else {
+      fiveDaysForecast.push(currentDay3HourStepStack)
+      currentDay3HourStepStack = []
+      dayToFulfill = currentDay
+    }
+  })
+  return fiveDaysForecast
 }
