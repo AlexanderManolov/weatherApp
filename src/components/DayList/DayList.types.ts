@@ -1,4 +1,4 @@
-import { ThreeHourForecast } from '../../api/fetch5DayForecast.types'
+import { ThreeHourForecast } from '../../api/fetch5DayForecast/fetch5DayForecast.types'
 
 export type DayListProps = {
   selectedDay: number

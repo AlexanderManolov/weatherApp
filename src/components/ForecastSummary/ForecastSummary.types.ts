@@ -1,4 +1,4 @@
-import { ThreeHourForecast, ThreeHourForecastCityDetails } from '../../api/fetch5DayForecast.types'
+import { ThreeHourForecast, ThreeHourForecastCityDetails } from '../../api/fetch5DayForecast/fetch5DayForecast.types'
 
 export type ForecastSummaryProps = {
   cityDetails: ThreeHourForecastCityDetails
