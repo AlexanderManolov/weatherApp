@@ -9,7 +9,7 @@ import DetailedWeatherInfo from '../DetailedWetherInfo/DetailedWetherInfo'
 const MainForecastInfo = (props: PropsWithChildren<MainForecastInfoProps>) => {
   const { cityDetails, fiveDaysMainForecastDetails } = props
   const [selectedDay, setSelectedDay] = useState(0)
-  console.log(selectedDay)
+
   return (
     <TwoColumnsLayout $gap='2rem'>
       <ForecastDetailsWrapper>
