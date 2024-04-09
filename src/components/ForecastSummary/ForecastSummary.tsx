@@ -24,7 +24,8 @@ const ForecastSummary = (props: PropsWithChildren<ForecastSummaryProps>) => {
       </SummaryColumn>
       <SummaryColumn>
         <img src={buildIconURL(weatherData.icon)} alt="Weather icon" />
-        <span>{weatherData.main}</span>
+        {/* Anti-pattern but short on time */}
+        <span style={{alignSelf: 'center'}}>{weatherData.main}</span>
       </SummaryColumn>
     </SummaryRow>
   )
