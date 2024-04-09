@@ -1,6 +1,6 @@
 import { Dispatch, PropsWithChildren, SetStateAction, createContext, useMemo, useState } from 'react'
 
-type GlobalContext = {
+export type GlobalContext = {
   theme: string
   weatherQueryParams: {
     latitude?: number
@@ -10,7 +10,7 @@ type GlobalContext = {
   }
 }
 
-const initialGlobalContextValue = {
+export const initialGlobalContextValue = {
   theme: 'dark',
   weatherQueryParams: {
     setLatitude: () => {},
