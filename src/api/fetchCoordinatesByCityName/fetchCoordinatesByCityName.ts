@@ -7,12 +7,13 @@ import ResponseError from '../response-error'
 */
 const fetchCoordinatesByCityName = async (query: string) => {
   const API_KEY = process.env.VITE_OPEN_WEATHER_API_KEY
+  if (!API_KEY) throw new Error('Open weather API key is undefined')
 
   try {
     const response = await fetch(
       `${openWeatherApiBaseURL}${coordinatesEndpoint}?${query}&appid=${API_KEY}`
     )
-    console.log(!response.ok)
+
     if (!response.ok) {
       throw new ResponseError(`Fetching city coordinates returned an error: ${response.status}`, response)
     }
