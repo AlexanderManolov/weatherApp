@@ -18,7 +18,7 @@ export const toQueryString = (obj: Record<string, string | number | boolean | st
   return parts.join('&');
 }
 
-export const formatFiveDays = (list: ThreeHourForecast[]) => {
+export const sortFiveDays = (list: ThreeHourForecast[]) => {
   const fiveDaysForecast: ThreeHourForecast[][] = []
 
   let dayToFulfill: number = moment().date()
@@ -30,7 +30,7 @@ export const formatFiveDays = (list: ThreeHourForecast[]) => {
       currentDay3HourStepStack.push(threeHourStepObject)
     } else {
       fiveDaysForecast.push(currentDay3HourStepStack)
-      currentDay3HourStepStack = []
+      currentDay3HourStepStack = [threeHourStepObject]
       dayToFulfill = currentDay
     }
   })

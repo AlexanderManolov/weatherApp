@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import fetch5DayForecast from './api/fetch5DayForecast'
-import { formatFiveDays, toQueryString } from './utils'
+import { sortFiveDays, toQueryString } from './utils'
 import { FiveDayForecastResponse } from './api/fetch5DayForecast.types'
 import GlobalStyle from './components/GlobalStyle'
 import LoadingSpinner from './components/LoadingSpinner'
@@ -47,7 +47,7 @@ function App() {
         {isForecastLoaded
         ? <MainForecastInfo
           cityDetails={fiveDayWeatherData.city}
-          fiveDaysMainForecastDetails={formatFiveDays(fiveDayWeatherData.list)}
+          fiveDaysMainForecastDetails={sortFiveDays(fiveDayWeatherData.list)}
           />
         : <LoadingSpinner />}
       </BodyWrapper>
