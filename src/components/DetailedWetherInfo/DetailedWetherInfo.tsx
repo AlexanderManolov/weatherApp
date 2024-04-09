@@ -1,19 +1,25 @@
-import { PropsWithChildren } from 'react'
+import { FormEvent, PropsWithChildren, useCallback, useState } from 'react'
 import moment from 'moment'
-import { ThreeHourForecast } from '../../api/fetch5DayForecast.types'
-import { CitySearch, DetailedWeatherInfoWrapper, DetailsBodyRow, DetailsHeaderRow, StyledImg } from './DetailedWeatherInfo.styled'
-// TODO: Export in separate .types file
-type DetailedWeatherInfoProps = {
-  selectedDayDetails: ThreeHourForecast[]
-}
+import { ThreeHourForecast } from '../../api/fetch5DayForecast/fetch5DayForecast.types'
+import { DetailedWeatherInfoWrapper, DetailsBodyRow, DetailsHeaderRow } from './DetailedWeatherInfo.styled'
+import SearchForm from '../SearchForm/SearchForm'
+import { DetailedWeatherInfoProps, SearchFormFormElement } from './DetailedWeatherInfo.types'
+import { useCityCoordinates } from '../../hooks/useCityCoordinates'
 
 const DetailedWeatherInfo = (props: PropsWithChildren<DetailedWeatherInfoProps>) => {
   const { selectedDayDetails } = props
+  const [searchInputValue, setSearchInputValue] = useState<string|undefined>()
+  const onFormSubmitHandler = useCallback((event: FormEvent<SearchFormFormElement>) => {
+    setSearchInputValue(event.currentTarget.searchQuery.value)
+    event.preventDefault()
+  }, [])
+
+  useCityCoordinates(searchInputValue)
+
   return (
     <DetailedWeatherInfoWrapper>
       <DetailsBodyRow $justification='flex-start'>
-        <StyledImg src="https://cdn-icons-png.flaticon.com/512/711/711319.png" alt="Search Icon" />
-        <CitySearch type="search"/>
+        <SearchForm onSubmitHandler={onFormSubmitHandler}/>
       </DetailsBodyRow>
       <DetailsHeaderRow>
         <span>Weather Details</span>
