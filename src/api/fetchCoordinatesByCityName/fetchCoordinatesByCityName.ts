@@ -6,20 +6,20 @@ import ResponseError from '../response-error'
   Number of the locations in the API response (up to 5 results can be returned in the API response)
 */
 const fetchCoordinatesByCityName = async (query: string) => {
-  const API_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY
+  const API_KEY = process.env.VITE_OPEN_WEATHER_API_KEY
 
   try {
     const response = await fetch(
       `${openWeatherApiBaseURL}${coordinatesEndpoint}?${query}&appid=${API_KEY}`
     )
+    console.log(!response.ok)
     if (!response.ok) {
       throw new ResponseError(`Fetching city coordinates returned an error: ${response.status}`, response)
     }
 
     return await response.json()
   } catch (error) {
-    console.error((error as Error)?.message)
-    return
+    throw (error as Error)?.message
   }
 }
 
