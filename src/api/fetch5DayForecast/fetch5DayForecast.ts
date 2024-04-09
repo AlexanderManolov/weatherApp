@@ -1,5 +1,5 @@
-import { fiveDayForecastEndpoint, openWeatherApiBaseURL } from '../constants/api'
-import ResponseError from './response-error'
+import { fiveDayForecastEndpoint, openWeatherApiBaseURL } from '../../constants/api'
+import ResponseError from '../response-error'
 
 const fetch5DayForecast = async (query: string) => {
   const API_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY

@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { ThreeHourForecast } from './api/fetch5DayForecast.types'
+import { ThreeHourForecast } from './api/fetch5DayForecast/fetch5DayForecast.types'
 
 export const toQueryString = (obj: Record<string, string | number | boolean | string[] | undefined>): string => {
   const parts: string[] = [];
