@@ -28,7 +28,7 @@ describe('ForecastSummary component', () => {
     const mockMoment = {
       format: vi.fn().mockReturnValue('08:00 AM - Tuesday, April 09 2024'),
     }
-    vi.mocked(moment).mockReturnValueOnce(mockMoment)
+    vi.mocked(moment).mockReturnValueOnce(mockMoment as never)
   })
 
   test('should render temperature, city name, date, and weather icon', () => {
