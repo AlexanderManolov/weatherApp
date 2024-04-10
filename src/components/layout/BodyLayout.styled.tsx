@@ -7,7 +7,7 @@ export const BodyWrapper = styled.div`
   justify-content: center;
   height: 100vh;
   background-color: burlywood;
-  background-image: url('src/assets/background.jpg');
+  background-image: url('./assets/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
