@@ -39,3 +39,11 @@ The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 See the section about (deployment)[https://create-react-app.dev/docs/deployment/] for more information.
+
+With more time I would improve:
+- Remove the heavy image from the background and use a color to optimize initial loading.
+- Above the main weather information as a background, an image based on the weather type(cloudy, rainy, snowy) could be provided.
+- HTTP request caching for optimization could be done with `TanStack Query`.
+- Better state management with specific context for the weather data and component state management.
+- If more requests are needed adding `axios` is an option.
+- Higher test coverage.
