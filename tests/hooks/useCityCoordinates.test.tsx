@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from 'vitest'
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook, waitFor } from '@testing-library/react'
 import { ContextProvider } from '../utils'
 import { useCityCoordinates } from '../../src/hooks/useCityCoordinates'
 // import * as contextUtils from '../../src/contexts/GlobalContext/GlobalContext'
@@ -28,12 +28,13 @@ describe('useCityCoordinates hook', () => {
     //   }
     // })
 
-    const { result, waitForNextUpdate } = renderHook(() =>
+    const { result } = renderHook(() =>
       useCityCoordinates('London'), { wrapper: ContextProvider })
 
-    await waitForNextUpdate()
+    await waitFor(() => {
+      expect(result.current).toEqual({ latitude: 51.505, longitude: -0.09 })
+    })
 
-    expect(result.current).toEqual({ latitude: 51.505, longitude: -0.09 })
     // TODO: Validate setters are called correctly. Maybe a bump down to react 17 would be needed
     // for react-hooks to work properly.
     // expect(mockSetLatitude).toHaveBeenCalledWith(51.505)
