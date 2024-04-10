@@ -1,30 +1,41 @@
-# React + TypeScript + Vite
+# Foruth Enterprise Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Quick Preview: https://weather-app-fourth.netlify.app
 
-Currently, two official plugins are available:
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9473d48e-11e3-47c4-8cda-8d43a3076c78/deploy-status)](https://app.netlify.com/sites/weather-app-fourth/deploys)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Used Tech Stack:
+- React
+- Typescript
+- styled-components
+- moment
+- vitest
 
-## Expanding the ESLint configuration
+Features:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Displays the current 5-day weather forecast for the location of the user.
+- Allow users to drill into the 3-hour step detail for each day.
+- Show details for each day.
+- Retrieve a 5-day forecast for a user-specified city.
 
-- Configure the top-level `parserOptions` property like this:
+Available Scripts
+In the project directory, you can run:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+`npm run dev`
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Runs the app in the development mode.
+Open http://localhost:3000 to view it in the browser.
+
+`npm run build`
+
+Builds the app for production to the build folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+`npm run test`
+
+Run all tests and export a coverage folder.
+
+The build is minified and the filenames include the hashes.
+Your app is ready to be deployed!
+
+See the section about (deployment)[https://create-react-app.dev/docs/deployment/] for more information.
