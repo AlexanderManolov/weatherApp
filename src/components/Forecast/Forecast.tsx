@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { FiveDayForecastResponse } from '../../api/fetch5DayForecast/fetch5DayForecast.types'
 import fetch5DayForecast from '../../api/fetch5DayForecast/fetch5DayForecast'
 import LoadingSpinner from '../LoadingSpinner'
@@ -14,17 +14,20 @@ const Forecast = () => {
     setLongitude,
     setLatitude,
   } } = useContext(GlobalContext)
+  const [shouldUseGeolocation, setShouldUseGeolocation] = useState(false)
   const [fiveDayWeatherData, setFiveDayWeatherData] = useState<FiveDayForecastResponse>()
   const isForecastLoaded = !!fiveDayWeatherData
 
   useEffect(() => {
-    if (window.navigator.geolocation && setLatitude && setLongitude) {
-      window.navigator.geolocation.getCurrentPosition((location: Location) => {
-        setLatitude(location.coords.latitude)
-        setLongitude(location.coords.longitude)
-      })
+    if (shouldUseGeolocation) {
+      if (window.navigator.geolocation && setLatitude && setLongitude) {
+        window.navigator.geolocation.getCurrentPosition((location: Location) => {
+          setLatitude(location.coords.latitude)
+          setLongitude(location.coords.longitude)
+        })
+      }
     }
-  }, [setLatitude, setLongitude])
+  }, [setLatitude, setLongitude, shouldUseGeolocation])
 
   useEffect(() => {
     if (longitude && latitude) {
@@ -34,18 +37,25 @@ const Forecast = () => {
       }
   
       fetch5DayForecast(toQueryString(queryObject))
-      .then((data: FiveDayForecastResponse) => {
-        setFiveDayWeatherData(data)
-      })
+        .then((data: FiveDayForecastResponse) => {
+          setFiveDayWeatherData(data)
+        })
     }
   }, [latitude, longitude])
 
+  const getGeolocationPermission = useCallback(() => {
+    setShouldUseGeolocation(true)
+  }, [])
+
   return (
         isForecastLoaded
-        ? <MainForecastInfo
-            cityDetails={fiveDayWeatherData.city}
-            fiveDaysMainForecastDetails={sortFiveDays(fiveDayWeatherData.list)}
-          />
+        ? <>
+          <button onClick={getGeolocationPermission}>Use my location</button>
+          <MainForecastInfo
+              cityDetails={fiveDayWeatherData.city}
+              fiveDaysMainForecastDetails={sortFiveDays(fiveDayWeatherData.list)}
+            />
+        </>
         : <LoadingSpinner />
   )
 }
